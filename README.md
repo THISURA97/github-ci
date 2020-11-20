@@ -1,6 +1,4 @@
-[![Node CI](https://github.com/MichaelCurrin/node-project-template/workflows/Node%20CI/badge.svg)](https://github.com/MichaelCurrin/node-project-template/actions)
-[GitHub tag](https://img.shields.io/github/tag/MichaelCurrin/node-project-template)](https://github.com/MichaelCurrin/node-project-template/releases/)
-[Made with Node](https://img.shields.io/badge/Node.js->=10.X-blue?logo=node.js&logoColor=white)](https://nodejs.org)
+[![Node CI](https://github.com/MichaelCurrin/node-project-template/workflows/Node%20CI/badge.svg)](https://github.com/MichaelCurrin/node-project-template/actions) [![GitHub tag](https://img.shields.io/github/tag/MichaelCurrin/node-project-template)](https://github.com/MichaelCurrin/node-project-template/releases/) [![Made with Node](https://img.shields.io/badge/Node.js->=10.X-blue?logo=node.js&logoColor=white)](https://nodejs.org)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
