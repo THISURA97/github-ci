@@ -36,10 +36,8 @@ jobs:
         #What that section is simply doing is telling our workflow 
         #to run our build on two versions of node, v10 and v8.
 
-    steps:
-
-    #Steps just indicate the various steps you want to run on that job
-
+        #Steps just indicate the various steps you want to run on that job
+    
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
