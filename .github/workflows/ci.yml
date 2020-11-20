@@ -2,11 +2,19 @@ name: CI
 
 #This is just specifying a name for the workflow
 
-on: [push]
+on: 
 
-#The on command is used to specify an event that will trigger 
-#the workflow, this event can be push, pull_request, etc.
-#It can also be an array of events like this.
+  push:
+   branches:    
+      - master 
+
+      #From the snippet above, we are saying that the workflow 
+      #(pipeline) should be triggered only when we push to master 
+      #branch (you can trigger the workflow on any branch).
+
+      #The on command is used to specify an event that will trigger 
+      #the workflow, this event can be push, pull_request, etc.
+      #It can also be an array of events like this.
 
 jobs:
 
@@ -19,18 +27,44 @@ jobs:
     
     #The runs-on is specifying the OS you want your workflow to 
     #run on and we are using the latest version of ubuntu
+  strategy:
+      matrix:
+        node-version: [10.x, 8.x]
+
+        #We added a new section call strategy and under that, 
+        #we have matrix accompanied with the node versions. 
+        #What that section is simply doing is telling our workflow 
+        #to run our build on two versions of node, v10 and v8.
 
     steps:
 
     #Steps just indicate the various steps you want to run on that job
 
+    steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
       #Github has some already define Actions, we are using version 1 
       #checkout action this is responsible for cloning the repo and 
       #checking into our project directory.
+
+      #Here we added the setup-node@v1 actions, this is responsible 
+      #for installing the specified version of node in our CI environment
+      # since we are using the matrix strategy, this will spin up
+      # two environments for node version 10 and 8 respectively.
+
+      - name: yarn install
+      run: |
+        yarn install
+    - name: yarn test
+      run: |
+        yarn test 
+      env:
+        CI: true
+      
+    - name: yarn build
+      run: |
+        yarn run build --if-present
